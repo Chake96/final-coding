@@ -18,4 +18,27 @@ public class Rate_Test {
 		assertTrue(result == 1427);
 	}
 
+	
+	@Test
+	public void testHPV() {
+		Rate payment = new Rate(700, 500000);
+		result = Math.floor(payment.getPayment(360));
+		assertTrue(result == 2379);
+	}
+	
+	@Test
+	public void testDRATE() {
+		Rate payment = new Rate(600, 500000);
+		result = Math.floor(payment.getPayment(360));
+		assertTrue(result == 2672);
+	}
+	
+	@Test
+	public void testFull() {
+		Rate payment = new Rate(600, 500000);
+		result = payment.getPayment(360);
+		assertEquals(result, 2672.97,.001);
+	}
+	
+
 }

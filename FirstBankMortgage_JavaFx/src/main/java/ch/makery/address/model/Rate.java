@@ -47,8 +47,8 @@ public class Rate extends RateDomainModel {
 		final double fv = 0;   //the future value, 0 because you want to pay off the mortgage	
 		
 
-		//rate is divided by number of months in year (program would freeze if divison somewhere else)
-		pmt = FinanceLib.pmt(RateDAL.getRate(creditScore)/12, NumberOfPayments, -pv, fv, compounding);
+		//rate is divided by number of months in year (program would freeze if divison somewhere else where), and by 100 to get it into a percentage decimal
+		pmt = FinanceLib.pmt(RateDAL.getRate(creditScore)/100/12, NumberOfPayments, -pv, fv, compounding);
 		
 
 

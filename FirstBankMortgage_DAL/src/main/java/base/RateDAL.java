@@ -44,7 +44,7 @@ public class RateDAL {
 			
 			result = rateGet.getInterestRate();
 			System.out.println(result);
-			result= (result/100);
+			result= (result);
 			System.out.println(result);
 			
 			

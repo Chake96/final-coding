@@ -19,6 +19,7 @@ public class Rate_Test{
 	@Test //test the db against a entered credit of 600
 	public void test600(){
 		intrstRate = RateDAL.getRate(600);
+		//System.out.print
 		assertTrue(intrstRate == 5);
 	}
 	
