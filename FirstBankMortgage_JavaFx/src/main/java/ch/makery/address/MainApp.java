@@ -50,8 +50,9 @@ public class MainApp extends Application {
         this.primaryStage.getIcons().add(new Image("file:resources/images/address_book_32.png"));
 
         initRootLayout();
-
-        //showPersonOverview();
+        
+        showMortgage();
+       
     }
 
     /**
@@ -73,6 +74,7 @@ public class MainApp extends Application {
             // Give the controller access to the main app.
             RootLayoutController controller = loader.getController();
             controller.setMainApp(this);
+            
 
             primaryStage.show();
         } catch (IOException e) {
@@ -80,28 +82,25 @@ public class MainApp extends Application {
         }
 
     }
-
-    /**
-     * Shows the person overview inside the root layout.
-     */
-    public void showPersonOverview() {
-        try {
-            // Load person overview.
+    
+    public void showMortgage(){
+    	try{
+    		// Load mortgage
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/PersonOverview.fxml"));
-            AnchorPane personOverview = (AnchorPane) loader.load();
+            loader.setLocation(MainApp.class.getResource("view/Mortgage.fxml"));
+            AnchorPane mortgage = (AnchorPane) loader.load();
 
-            // Set person overview into the center of root layout.
-            rootLayout.setCenter(personOverview);
+            // Set mortgage into the center of root layout.
+            rootLayout.setCenter(mortgage);
 
             // Give the controller access to the main app.
             MortgageController controller = loader.getController();
             controller.setMainApp(this);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    	}catch(IOException e){
+    		e.printStackTrace();
+    	}
     }
+
     
 
 

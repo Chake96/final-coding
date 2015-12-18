@@ -18,14 +18,6 @@ public class RateDomainModel implements Serializable {
 	}
 	
 
-/*	public RateDomainModel(int rateID, int minCreditScore, double interestRate)
-	{
-	super();
-	RateID = rateID;
-	MinCreditScore = minCreditScore;
-	InterestRate = interestRate;
-	}*/
-	
 	public int getRateID() {
 		return RateID;
 	}

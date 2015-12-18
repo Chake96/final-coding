@@ -12,16 +12,20 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import domain.RateDomainModel;
-import domain.StudentDomainModel;
 import util.HibernateUtil;
 
 public class RateDAL {
-
-
-	public static double getRate(int GivenCreditScore) { //add the rest of the parameters and do all calculations in this method, use a button for user to calculate (run this method)
+	
+	//this method returns the interestrate as a double, takes in a user's credit score and compares it against the database
+	public static double getRate(int GivenCreditScore) {
 		//FinalExam - please implement		
 		// Figure out which row makes sense- return back the 
 		// right interest rate from the table based on the given credit score
+		
+		//most efficient found way to round credit score to acceptable credit score
+		if(GivenCreditScore % 50 != 0){
+			GivenCreditScore = GivenCreditScore - (GivenCreditScore % 50);
+		}
 		
 		double result = 0;
 		
@@ -37,7 +41,12 @@ public class RateDAL {
 			
 			List<?> list = query.list();
 			rateGet = (RateDomainModel)list.get(0);
+			
 			result = rateGet.getInterestRate();
+			System.out.println(result);
+			result= (result/100);
+			System.out.println(result);
+			
 			
 			tx.commit();
 		} catch (HibernateException e) {
@@ -52,6 +61,8 @@ public class RateDAL {
 		return result;
 	}
 	
+	
+	//this method returns all the rates in the database
 	public static ArrayList<RateDomainModel> getRates() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
