@@ -27,7 +27,7 @@ public class RateDAL {
 			GivenCreditScore = GivenCreditScore - (GivenCreditScore % 50);
 		}
 		
-		double result = 0;
+		double result = 0; //the final result from the database
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
@@ -62,7 +62,7 @@ public class RateDAL {
 	}
 	
 	
-	//this method returns all the rates in the database
+	//this method returns all the rates in the database, mostly used to make sure hibernate connection is connected and working properly
 	public static ArrayList<RateDomainModel> getRates() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;

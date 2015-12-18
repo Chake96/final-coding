@@ -103,18 +103,18 @@ public class MortgageController {
 		alTF.addAll(Arrays.asList(allTextFields)); //all user input text fields in an array
 		double primaryPercent = .36; //the percent variable for the first requirement for income
 		double secondaryPercent = .28; //the percent multiple for the second requirement of income and expenses
-		double expense = 0; 
-		double income = 0;
+		double expense = 0;  //the expenses of the user
+		double income = 0; //the annual income of the user
 		double incomeMax = 0; //the maximum income 
 		boolean comboClicked = false; //boolean to make sure that the combobox has a selection, defaulted to false
 		double result = 0; //the number of payments determined by the combobox
-		int months = 12;
-		
+		int months = 12; //months in a year
+
 		//true if the combobox has an item selected, else false
 		if(comboTerm.getSelectionModel().isSelected(0) || comboTerm.getSelectionModel().isSelected(1)){
 			comboClicked = true;
 		}
-		System.out.println(alTF.iterator().next().getText().isEmpty());
+		
 		//if any of the text fields are not filled, alert the user. else run the calculation
 		if(alTF.iterator().next().getText().isEmpty() == true || comboClicked ==false){
 			JOptionPane.showMessageDialog(null, "Please Complete all Fields before Calculating");
@@ -122,39 +122,39 @@ public class MortgageController {
 			if(600 >Integer.parseInt(textCredit.getText().toString()) || Integer.parseInt(textCredit.getText().toString())>800){
 				JOptionPane.showMessageDialog(null, "Valid Credit Scores: 600 to 800");
 			}else{
-			Rate payment = new Rate(Integer.parseInt(textCredit.getText().toString()),	Double.parseDouble(textHouse.getText().toString()));
-			try{
-				income = Double.parseDouble(textIncome.getText().toString());
-				expense = Double.parseDouble(textExpense.getText().toString());
-				incomeMax = income*primaryPercent; 
-			}
-			catch(Exception e){
-				JOptionPane.showMessageDialog(null, "Please only enter Appropriate Number Values"); //exception gets thrown if the user inputs non-numeric numbers
-				System.out.println("Non-numeric characters entered");
-			}
-			
-			switch(comboTerm.getSelectionModel().getSelectedIndex()){
-			case 0:
-				result = payment.getPayment(15*months); //for 15 years it is multiplied by 12 to get the number of months
-				break;
-			case 1:
-				result = payment.getPayment(30*months); //for 30 years it is multiplied by 12 to get the number of months, or twice the months of 15
-				break;
-			}
+				Rate payment = new Rate(Integer.parseInt(textCredit.getText().toString()),	Double.parseDouble(textHouse.getText().toString()));
+				try{
+					income = Double.parseDouble(textIncome.getText().toString()); //parse the user input into a double representing income
+					expense = Double.parseDouble(textExpense.getText().toString()); //parse the user input into a double representing the users expenses
+					incomeMax = income*primaryPercent;  //calculate the "maximum" income for a user to be bale to afford the mortgage
+				}
+				catch(Exception e){
+					JOptionPane.showMessageDialog(null, "Please only enter Appropriate Number Values"); //exception gets thrown if the user inputs non-numeric numbers
+					System.out.println("Non-numeric characters entered");
+				}
 
-			
-			//checks to make sure the persons income and expenses are not too low for the calculated mortgage
-			if(result <= incomeMax || result <= (income + expense)* secondaryPercent){
-				NumberFormat formatter = new DecimalFormat("###,###,###,###.##");
-				lblResult.setText("$"+formatter.format(result));
-				System.out.println(formatter.format(result));
-			}else{
-				lblResult.setText("You cannot afford this mortgage");			
+				switch(comboTerm.getSelectionModel().getSelectedIndex()){
+				case 0:
+					result = payment.getPayment(15*months); //for 15 years it is multiplied by 12 to get the number of months
+					break;
+				case 1:
+					result = payment.getPayment(30*months); //for 30 years it is multiplied by 12 to get the number of months, or twice the months of 15
+					break;
+				}
+
+
+				//checks to make sure the persons income and expenses are not too low for the calculated mortgage
+				if(result <= incomeMax || result <= (income + expense)* secondaryPercent){
+					NumberFormat formatter = new DecimalFormat("###,###,###,###.##");
+					lblResult.setText("$"+formatter.format(result));
+					System.out.println(formatter.format(result));
+				}else{
+					lblResult.setText("You cannot afford this mortgage");			
+				}
 			}
 		}
-		}
-		
-		
+
+
 	}
 
 }

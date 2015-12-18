@@ -42,7 +42,7 @@
                         <Label id="lblHouse" prefHeight="21.0" prefWidth="233.0" text="Enter the Cost of potential House:" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="3" />
                         <Label id="lblTerm" prefHeight="21.0" prefWidth="233.0" text="Term:" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="4" />
                         <ComboBox id="comboTerm" fx:id="comboTerm" prefHeight="25.0" prefWidth="241.0" promptText="Select..." GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Button id="btnCalculate" fx:id="btnCalculate" mnemonicParsing="false" onAction="#handleCalculate" prefHeight="25.0" prefWidth="215.0" text="Calculate" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <Button id="btnCalculate" fx:id="btnCalculate" focusTraversable="false" mnemonicParsing="false" onAction="#handleCalculate" prefHeight="25.0" prefWidth="215.0" text="Calculate" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <GridPane.margin>
                               <Insets left="15.0" />
                            </GridPane.margin>
